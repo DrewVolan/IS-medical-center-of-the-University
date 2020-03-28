@@ -10,33 +10,42 @@ using System.Windows.Forms;
 
 namespace mis
 {
-    public partial class AuthorizationForm : StandartForm
+    public partial class AuthorizationForm : Form
     {
         public AuthorizationForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void AuthorizationButton_Click(object sender, EventArgs e)
         {
             if (loginTextBox.Text == "admin" && passwordTextBox.Text == "admin")
             {
-                AdministrationForm administrationForm = new AdministrationForm();
+                AdministrationForm administrationForm = new AdministrationForm
+                {
+                    Login = loginTextBox.Text,
+                    //MdiParent = this
+                };
                 administrationForm.Show();
                 this.Hide();
             }
             else if (loginTextBox.Text == "medic" && passwordTextBox.Text == "medic")
             {
-                MedicForm medicForm = new MedicForm();
+                MedicForm medicForm = new MedicForm
+                {
+                    Login = loginTextBox.Text,
+                    //MdiParent = this
+                };
                 medicForm.Show();
                 this.Hide();
             }
             else MessageBox.Show("Логин и/или пароль неверны!\nПопробуйте ещё раз.");
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AuthorizationForm_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            Application.Exit();
         }
     }
 }

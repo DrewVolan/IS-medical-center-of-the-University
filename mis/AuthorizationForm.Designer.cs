@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizationForm));
             this.loginLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.loginTextBox = new System.Windows.Forms.TextBox();
@@ -82,15 +83,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkOrange;
             this.ClientSize = new System.Drawing.Size(624, 441);
             this.Controls.Add(this.authorizationButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.loginTextBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.loginLabel);
-            this.Location = new System.Drawing.Point(0, 0);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.IsMdiContainer = true;
             this.Name = "AuthorizationForm";
             this.Text = "Авторизация";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AuthorizationForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
 

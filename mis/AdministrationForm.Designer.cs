@@ -28,67 +28,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.администрированиеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.регистрацияНовогоПользователяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.новыйСотрудникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.новыйСтудентToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.newEmployeeButton = new System.Windows.Forms.Button();
+            this.newStudentButton = new System.Windows.Forms.Button();
+            this.deleteUserButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // newEmployeeButton
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.администрированиеToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.newEmployeeButton.Location = new System.Drawing.Point(12, 386);
+            this.newEmployeeButton.Name = "newEmployeeButton";
+            this.newEmployeeButton.Size = new System.Drawing.Size(115, 52);
+            this.newEmployeeButton.TabIndex = 1;
+            this.newEmployeeButton.Text = "Зарегистрировать нового сотрудника";
+            this.newEmployeeButton.UseVisualStyleBackColor = true;
+            this.newEmployeeButton.Click += new System.EventHandler(this.NewEmployeeButton_Click);
             // 
-            // администрированиеToolStripMenuItem
+            // newStudentButton
             // 
-            this.администрированиеToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.регистрацияНовогоПользователяToolStripMenuItem});
-            this.администрированиеToolStripMenuItem.Name = "администрированиеToolStripMenuItem";
-            this.администрированиеToolStripMenuItem.Size = new System.Drawing.Size(134, 20);
-            this.администрированиеToolStripMenuItem.Text = "Администрирование";
+            this.newStudentButton.Location = new System.Drawing.Point(133, 386);
+            this.newStudentButton.Name = "newStudentButton";
+            this.newStudentButton.Size = new System.Drawing.Size(115, 52);
+            this.newStudentButton.TabIndex = 2;
+            this.newStudentButton.Text = "Зарегистрировать нового студента";
+            this.newStudentButton.UseVisualStyleBackColor = true;
+            this.newStudentButton.Click += new System.EventHandler(this.NewStudentButton_Click);
             // 
-            // регистрацияНовогоПользователяToolStripMenuItem
+            // deleteUserButton
             // 
-            this.регистрацияНовогоПользователяToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.новыйСотрудникToolStripMenuItem,
-            this.новыйСтудентToolStripMenuItem});
-            this.регистрацияНовогоПользователяToolStripMenuItem.Name = "регистрацияНовогоПользователяToolStripMenuItem";
-            this.регистрацияНовогоПользователяToolStripMenuItem.Size = new System.Drawing.Size(263, 22);
-            this.регистрацияНовогоПользователяToolStripMenuItem.Text = "Регистрация нового пользователя";
-            // 
-            // новыйСотрудникToolStripMenuItem
-            // 
-            this.новыйСотрудникToolStripMenuItem.Name = "новыйСотрудникToolStripMenuItem";
-            this.новыйСотрудникToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.новыйСотрудникToolStripMenuItem.Text = "Новый сотрудник";
-            this.новыйСотрудникToolStripMenuItem.Click += new System.EventHandler(this.НовыйСотрудникToolStripMenuItem_Click);
-            // 
-            // новыйСтудентToolStripMenuItem
-            // 
-            this.новыйСтудентToolStripMenuItem.Name = "новыйСтудентToolStripMenuItem";
-            this.новыйСтудентToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.новыйСтудентToolStripMenuItem.Text = "Новый студент";
-            this.новыйСтудентToolStripMenuItem.Click += new System.EventHandler(this.НовыйСтудентToolStripMenuItem_Click);
+            this.deleteUserButton.Location = new System.Drawing.Point(673, 386);
+            this.deleteUserButton.Name = "deleteUserButton";
+            this.deleteUserButton.Size = new System.Drawing.Size(115, 52);
+            this.deleteUserButton.TabIndex = 3;
+            this.deleteUserButton.Text = "Удалить пользователя";
+            this.deleteUserButton.UseVisualStyleBackColor = true;
+            this.deleteUserButton.Click += new System.EventHandler(this.DeleteUserButton_Click);
             // 
             // AdministrationForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.deleteUserButton);
+            this.Controls.Add(this.newStudentButton);
+            this.Controls.Add(this.newEmployeeButton);
             this.Location = new System.Drawing.Point(0, 0);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "AdministrationForm";
             this.Text = "Медпункт (Администрирование)";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Controls.SetChildIndex(this.newEmployeeButton, 0);
+            this.Controls.SetChildIndex(this.newStudentButton, 0);
+            this.Controls.SetChildIndex(this.deleteUserButton, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -96,10 +84,8 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem администрированиеToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem регистрацияНовогоПользователяToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem новыйСотрудникToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem новыйСтудентToolStripMenuItem;
+        private System.Windows.Forms.Button newEmployeeButton;
+        private System.Windows.Forms.Button newStudentButton;
+        private System.Windows.Forms.Button deleteUserButton;
     }
 }

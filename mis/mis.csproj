@@ -84,6 +84,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBoxMultiline.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="AdministrationForm.resx">
       <DependentUpon>AdministrationForm.cs</DependentUpon>
     </EmbeddedResource>
