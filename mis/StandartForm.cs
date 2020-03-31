@@ -23,6 +23,10 @@ namespace mis
         /// Буфер обмена.
         /// </summary>
         public string buffer;
+        /// <summary>
+        /// Параметр проверки опции "Только для чтения".
+        /// </summary>
+        public bool readOnlyParameter = true;
         public StandartForm()
         {
             InitializeComponent();
@@ -42,6 +46,7 @@ namespace mis
         private void StandartForm_Load(object sender, EventArgs e)
         {
             showLogin.Text += $"{Login}.";
+
         }
 
         private void ВыходToolStripMenuItem_Click(object sender, EventArgs e)

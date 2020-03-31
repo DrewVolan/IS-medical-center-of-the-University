@@ -51,7 +51,7 @@
             this.exitButton.Location = new System.Drawing.Point(718, 27);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(70, 24);
-            this.exitButton.TabIndex = 0;
+            this.exitButton.TabIndex = 2;
             this.exitButton.Text = "Выход";
             this.exitButton.UseVisualStyleBackColor = false;
             this.exitButton.Click += new System.EventHandler(this.ExitButton_Click);
@@ -74,7 +74,7 @@
             this.standartMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.standartMenuStrip.Name = "standartMenuStrip";
             this.standartMenuStrip.Size = new System.Drawing.Size(800, 24);
-            this.standartMenuStrip.TabIndex = 6;
+            this.standartMenuStrip.TabIndex = 0;
             this.standartMenuStrip.Text = "menuStrip1";
             // 
             // аккаунтToolStripMenuItem
@@ -110,7 +110,7 @@
             // оПрограммеToolStripMenuItem
             // 
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItem_Click);
             // 
@@ -122,7 +122,7 @@
             this.standartToolStrip.Location = new System.Drawing.Point(0, 24);
             this.standartToolStrip.Name = "standartToolStrip";
             this.standartToolStrip.Size = new System.Drawing.Size(800, 25);
-            this.standartToolStrip.TabIndex = 7;
+            this.standartToolStrip.TabIndex = 1;
             this.standartToolStrip.Text = "toolStrip1";
             // 
             // undoButton

@@ -64,18 +64,6 @@
     <Compile Include="MedicForm.Designer.cs">
       <DependentUpon>MedicForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="NewEmployeeForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewEmployeeForm.Designer.cs">
-      <DependentUpon>NewEmployeeForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="NewStudentForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="NewStudentForm.Designer.cs">
-      <DependentUpon>NewStudentForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="StandartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,9 +83,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MedicForm.resx">
       <DependentUpon>MedicForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="NewEmployeeForm.resx">
-      <DependentUpon>NewEmployeeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
