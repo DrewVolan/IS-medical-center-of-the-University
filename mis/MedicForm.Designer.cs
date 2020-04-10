@@ -47,6 +47,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.studentTextBox = new System.Windows.Forms.TextBox();
             this.studentComboBox = new System.Windows.Forms.ComboBox();
+            this.typeLabel = new System.Windows.Forms.Label();
+            this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.medicTextBoxMultilineContextMenuStrip.SuspendLayout();
             this.medicToolStrip.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -169,13 +171,15 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.typeComboBox);
+            this.panel2.Controls.Add(this.typeLabel);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.treatmentTextBox);
             this.panel2.Controls.Add(this.studentTextBox);
             this.panel2.Controls.Add(this.studentComboBox);
             this.panel2.Location = new System.Drawing.Point(334, 80);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(454, 296);
+            this.panel2.Size = new System.Drawing.Size(454, 358);
             this.panel2.TabIndex = 11;
             // 
             // label1
@@ -204,6 +208,27 @@
             this.studentComboBox.Size = new System.Drawing.Size(357, 21);
             this.studentComboBox.TabIndex = 6;
             this.studentComboBox.Visible = false;
+            // 
+            // typeLabel
+            // 
+            this.typeLabel.AutoSize = true;
+            this.typeLabel.Location = new System.Drawing.Point(6, 335);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(89, 13);
+            this.typeLabel.TabIndex = 7;
+            this.typeLabel.Text = "Тип обращения:";
+            // 
+            // typeComboBox
+            // 
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeComboBox.FormattingEnabled = true;
+            this.typeComboBox.Items.AddRange(new object[] {
+            "Жалоба",
+            "Прививка"});
+            this.typeComboBox.Location = new System.Drawing.Point(101, 332);
+            this.typeComboBox.Name = "typeComboBox";
+            this.typeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.typeComboBox.TabIndex = 7;
             // 
             // MedicForm
             // 
@@ -252,5 +277,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox studentComboBox;
         private System.Windows.Forms.TextBox studentTextBox;
+        private System.Windows.Forms.ComboBox typeComboBox;
+        private System.Windows.Forms.Label typeLabel;
     }
 }

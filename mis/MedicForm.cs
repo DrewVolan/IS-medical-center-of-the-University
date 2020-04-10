@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,6 @@ namespace mis
             InitializeComponent();
             this.CenterToScreen();
             treatmentTextBox.ContextMenuStrip = medicTextBoxMultilineContextMenuStrip;
-            treatments[0, 0] = "Проверочная жалоба!";
-            treatments[0, 1] = "Волейко Андрей Владимирович";
-            treatments[1, 1] = "Ивлев Дмитрий Сергеевич";
-            treatments[1, 0] = "Проверка жалобы.";
-            treatments[0, 2] = "01.09.2017";
-            treatments[1, 2] = "02.09.2017";
-            students[0] = "Волейко Андрей Владимирович";
-            students[1] = "Ивлев Дмитрий Сергеевич";
         }
 
         private void NewTreatmentButton_Click(object sender, EventArgs e)
@@ -87,8 +80,10 @@ namespace mis
         public string[,] treatments = new string[10, 3];
         public string[] students = new string[10];
 
-        private void MedicForm_Load(object sender, EventArgs e)
+        private async void MedicForm_Load(object sender, EventArgs e)
         {
+            sqlConnection = new SqlConnection(connectionPath);
+            await sqlConnection.OpenAsync();
             for (int i = 0; treatments[i, 0] != null; i++)
             {
                 treatmentsListBox.Items.Add($"{treatments[i, 2]} {treatments[i, 1]}");
@@ -110,6 +105,13 @@ namespace mis
                 studentComboBox.Visible = true;
                 studentTextBox.Visible = false;
             }
+            DataSet DS = new DataSet();
+            SqlDataAdapter sdaProduct = new SqlDataAdapter("SELECT * FROM [Students]", sqlConnection);
+            sdaProduct.Fill(DS, "Students");
+            studentComboBox.Items.Clear();
+            for (int i = 0; i < DS.Tables["Students"].Rows.Count; i++)
+                studentComboBox.Items.Add(DS.Tables["Students"].Rows[i][1].ToString() + " " + DS.Tables["Students"].Rows[i][2].ToString() + " " + DS.Tables["Students"].Rows[i][3].ToString());
+            sqlConnection.Close();
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)

@@ -32,6 +32,8 @@
             this.newEmployeeButton = new System.Windows.Forms.Button();
             this.deleteUserButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.idTextBox = new System.Windows.Forms.TextBox();
+            this.idLabel = new System.Windows.Forms.Label();
             this.userTypeTabControl = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.usersListBox = new System.Windows.Forms.ListBox();
@@ -41,6 +43,10 @@
             this.writeButton = new System.Windows.Forms.ToolStripButton();
             this.updateButton = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.paramTextBox2 = new System.Windows.Forms.TextBox();
+            this.paramLabel2 = new System.Windows.Forms.Label();
+            this.paramTextBox1 = new System.Windows.Forms.TextBox();
+            this.paramLabel1 = new System.Windows.Forms.Label();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.loginTextBox = new System.Windows.Forms.TextBox();
@@ -83,12 +89,33 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.idTextBox);
+            this.panel1.Controls.Add(this.idLabel);
             this.panel1.Controls.Add(this.userTypeTabControl);
             this.panel1.Controls.Add(this.deleteUserButton);
             this.panel1.Location = new System.Drawing.Point(12, 84);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(469, 354);
             this.panel1.TabIndex = 8;
+            // 
+            // idTextBox
+            // 
+            this.idTextBox.Location = new System.Drawing.Point(404, 28);
+            this.idTextBox.MaxLength = 9;
+            this.idTextBox.Name = "idTextBox";
+            this.idTextBox.ReadOnly = true;
+            this.idTextBox.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.idTextBox.Size = new System.Drawing.Size(60, 20);
+            this.idTextBox.TabIndex = 10;
+            // 
+            // idLabel
+            // 
+            this.idLabel.AutoSize = true;
+            this.idLabel.Location = new System.Drawing.Point(377, 31);
+            this.idLabel.Name = "idLabel";
+            this.idLabel.Size = new System.Drawing.Size(21, 13);
+            this.idLabel.TabIndex = 9;
+            this.idLabel.Text = "ID:";
             // 
             // userTypeTabControl
             // 
@@ -175,6 +202,10 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.paramTextBox2);
+            this.panel2.Controls.Add(this.paramLabel2);
+            this.panel2.Controls.Add(this.paramTextBox1);
+            this.panel2.Controls.Add(this.paramLabel1);
             this.panel2.Controls.Add(this.passwordTextBox);
             this.panel2.Controls.Add(this.passwordLabel);
             this.panel2.Controls.Add(this.loginTextBox);
@@ -191,11 +222,47 @@
             this.panel2.Size = new System.Drawing.Size(301, 354);
             this.panel2.TabIndex = 11;
             // 
+            // paramTextBox2
+            // 
+            this.paramTextBox2.Location = new System.Drawing.Point(98, 207);
+            this.paramTextBox2.Name = "paramTextBox2";
+            this.paramTextBox2.Size = new System.Drawing.Size(200, 20);
+            this.paramTextBox2.TabIndex = 15;
+            this.paramTextBox2.Visible = false;
+            // 
+            // paramLabel2
+            // 
+            this.paramLabel2.AutoSize = true;
+            this.paramLabel2.Location = new System.Drawing.Point(3, 210);
+            this.paramLabel2.Name = "paramLabel2";
+            this.paramLabel2.Size = new System.Drawing.Size(68, 13);
+            this.paramLabel2.TabIndex = 15;
+            this.paramLabel2.Text = "paramLabel2";
+            this.paramLabel2.Visible = false;
+            // 
+            // paramTextBox1
+            // 
+            this.paramTextBox1.Location = new System.Drawing.Point(98, 175);
+            this.paramTextBox1.Name = "paramTextBox1";
+            this.paramTextBox1.Size = new System.Drawing.Size(200, 20);
+            this.paramTextBox1.TabIndex = 14;
+            this.paramTextBox1.Visible = false;
+            // 
+            // paramLabel1
+            // 
+            this.paramLabel1.AutoSize = true;
+            this.paramLabel1.Location = new System.Drawing.Point(3, 178);
+            this.paramLabel1.Name = "paramLabel1";
+            this.paramLabel1.Size = new System.Drawing.Size(68, 13);
+            this.paramLabel1.TabIndex = 14;
+            this.paramLabel1.Text = "paramLabel1";
+            this.paramLabel1.Visible = false;
+            // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(77, 143);
+            this.passwordTextBox.Location = new System.Drawing.Point(98, 143);
             this.passwordTextBox.Name = "passwordTextBox";
-            this.passwordTextBox.Size = new System.Drawing.Size(221, 20);
+            this.passwordTextBox.Size = new System.Drawing.Size(200, 20);
             this.passwordTextBox.TabIndex = 13;
             this.passwordTextBox.Visible = false;
             // 
@@ -211,9 +278,9 @@
             // 
             // loginTextBox
             // 
-            this.loginTextBox.Location = new System.Drawing.Point(77, 109);
+            this.loginTextBox.Location = new System.Drawing.Point(98, 109);
             this.loginTextBox.Name = "loginTextBox";
-            this.loginTextBox.Size = new System.Drawing.Size(221, 20);
+            this.loginTextBox.Size = new System.Drawing.Size(200, 20);
             this.loginTextBox.TabIndex = 12;
             this.loginTextBox.Visible = false;
             // 
@@ -230,9 +297,9 @@
             // dateTimePicker
             // 
             this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker.Location = new System.Drawing.Point(77, 74);
+            this.dateTimePicker.Location = new System.Drawing.Point(98, 74);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(221, 20);
+            this.dateTimePicker.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker.TabIndex = 11;
             this.dateTimePicker.Value = new System.DateTime(2017, 9, 1, 0, 0, 0, 0);
             this.dateTimePicker.Visible = false;
@@ -249,9 +316,9 @@
             // 
             // fullNameTextBox
             // 
-            this.fullNameTextBox.Location = new System.Drawing.Point(77, 45);
+            this.fullNameTextBox.Location = new System.Drawing.Point(98, 45);
             this.fullNameTextBox.Name = "fullNameTextBox";
-            this.fullNameTextBox.Size = new System.Drawing.Size(221, 20);
+            this.fullNameTextBox.Size = new System.Drawing.Size(200, 20);
             this.fullNameTextBox.TabIndex = 10;
             this.fullNameTextBox.Visible = false;
             // 
@@ -272,9 +339,9 @@
             this.typePostComboBox.Items.AddRange(new object[] {
             "Пользователь",
             "Студент"});
-            this.typePostComboBox.Location = new System.Drawing.Point(77, 13);
+            this.typePostComboBox.Location = new System.Drawing.Point(98, 13);
             this.typePostComboBox.Name = "typePostComboBox";
-            this.typePostComboBox.Size = new System.Drawing.Size(221, 21);
+            this.typePostComboBox.Size = new System.Drawing.Size(200, 21);
             this.typePostComboBox.TabIndex = 9;
             this.typePostComboBox.SelectedIndexChanged += new System.EventHandler(this.TypePostComboBox_SelectedIndexChanged);
             // 
@@ -303,6 +370,7 @@
             this.Controls.SetChildIndex(this.panel2, 0);
             this.Controls.SetChildIndex(this.medicToolStrip, 0);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.userTypeTabControl.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -339,5 +407,11 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.TextBox loginTextBox;
         private System.Windows.Forms.Label loginLabel;
+        private System.Windows.Forms.TextBox idTextBox;
+        private System.Windows.Forms.Label idLabel;
+        private System.Windows.Forms.TextBox paramTextBox2;
+        private System.Windows.Forms.Label paramLabel2;
+        private System.Windows.Forms.TextBox paramTextBox1;
+        private System.Windows.Forms.Label paramLabel1;
     }
 }
