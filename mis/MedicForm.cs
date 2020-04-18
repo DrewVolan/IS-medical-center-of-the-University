@@ -20,31 +20,48 @@ namespace mis
             treatmentTextBox.ContextMenuStrip = medicTextBoxMultilineContextMenuStrip;
         }
 
-        private void NewTreatmentButton_Click(object sender, EventArgs e)
+        private async void NewTreatmentButton_Click(object sender, EventArgs e)
         {
-            if (treatmentTextBox.Text != "" && studentComboBox.Text != "")
+            try
             {
-                DialogResult dialogResult = MessageBox.Show("Создать новую жалобу?", "Новая жалоба", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                switch (dialogResult)
+                if (treatmentTextBox.Text != "" && studentComboBox.Text != "")
                 {
-                    case DialogResult.Yes:
-                        for (int i = 0; i < treatments.Length; i++)
+                    DialogResult dialogResult = MessageBox.Show("Создать новую жалобу?", "Новая жалоба", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        sqlConnection = new SqlConnection(connectionPath);
+                        SqlCommand insertTreatment = new SqlCommand("INSERT INTO[MedicalHistory](IdStudent, IdStaff, Date, Type, Info)VALUES(@IdStudent, @IdStaff, @Date, @Type, @Info)", sqlConnection);
+                        SqlCommand idStaff = new SqlCommand("SELECT * FROM [Staff] WHERE [Login]=@Login", sqlConnection);
+                        idStaff.Parameters.AddWithValue("Login", Login);
+                        string staffId = null;
+                        await sqlConnection.OpenAsync();
+                        sdr = await idStaff.ExecuteReaderAsync();
+                        while (await sdr.ReadAsync())
                         {
-                            if (treatments[i, 0] == null)
+                            if (sdr["Login"].ToString() == Login)
                             {
-                                treatments[i, 0] = treatmentTextBox.Text;
-                                treatments[i, 1] = studentComboBox.Text;
-                                treatments[i, 2] = DateTime.Now.ToString();
-                                treatmentsListBox.Items.Add(treatments[i, 2]);
+                                staffId = sdr["Id"].ToString();
                                 break;
                             }
                         }
-                        break;
+                        sdr.Close();
+                        insertTreatment.Parameters.AddWithValue("IdStudent", studentComboBox.SelectedItem.ToString().Split(' ')[0]);
+                        insertTreatment.Parameters.AddWithValue("IdStaff", staffId);
+                        insertTreatment.Parameters.AddWithValue("Date", DateTime.Now);
+                        insertTreatment.Parameters.AddWithValue("Type", typeComboBox.Text);
+                        insertTreatment.Parameters.AddWithValue("Info", treatmentTextBox.Text);
+                        await insertTreatment.ExecuteNonQueryAsync();
+                        sqlConnection.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Заполните все поля!", "Новая жалоба", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Заполните все поля!", "Новая жалоба", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,17 +94,23 @@ namespace mis
             UpdateButton_Click(this, e);
         }
 
-        public string[,] treatments = new string[10, 3];
-        public string[] students = new string[10];
-
         private async void MedicForm_Load(object sender, EventArgs e)
         {
             sqlConnection = new SqlConnection(connectionPath);
             await sqlConnection.OpenAsync();
-            for (int i = 0; treatments[i, 0] != null; i++)
+            SqlCommand selectTreatments = new SqlCommand("SELECT * FROM [MedicalHistory]", sqlConnection);
+            try
             {
-                treatmentsListBox.Items.Add($"{treatments[i, 2]} {treatments[i, 1]}");
-                studentComboBox.Items.Add(treatments[i, 1]);
+                sdr = await selectTreatments.ExecuteReaderAsync();
+                while (await sdr.ReadAsync())
+                {
+                    treatmentsListBox.Items.Add(Convert.ToString(sdr["Id"]) + " " + Convert.ToString(sdr["Date"]) + " " + Convert.ToString(sdr["Type"]) + " ID студента: " + Convert.ToString(sdr["IdStudent"]));
+                }
+                sdr.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             if (readOnlyParameter)
             {
@@ -110,7 +133,10 @@ namespace mis
             sdaProduct.Fill(DS, "Students");
             studentComboBox.Items.Clear();
             for (int i = 0; i < DS.Tables["Students"].Rows.Count; i++)
-                studentComboBox.Items.Add(DS.Tables["Students"].Rows[i][1].ToString() + " " + DS.Tables["Students"].Rows[i][2].ToString() + " " + DS.Tables["Students"].Rows[i][3].ToString());
+            {
+                if (DS.Tables["Students"].Rows[i][8].ToString() == "True")
+                    studentComboBox.Items.Add(DS.Tables["Students"].Rows[i][0].ToString() + " " + DS.Tables["Students"].Rows[i][9].ToString() + " " + DS.Tables["Students"].Rows[i][1].ToString() + " " + DS.Tables["Students"].Rows[i][2].ToString() + " " + DS.Tables["Students"].Rows[i][3].ToString());
+            }
             sqlConnection.Close();
         }
 
@@ -130,12 +156,30 @@ namespace mis
             treatmentTextBox.Clear();
         }
 
-        private void TreatmentsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private async void TreatmentsListBox_MouseClick(object sender, MouseEventArgs e)
         {
-            if (readOnlyParameter)
+            try
             {
-                treatmentTextBox.Text = treatments[treatmentsListBox.SelectedIndex, 0];
-                studentTextBox.Text = treatments[treatmentsListBox.SelectedIndex, 1];
+                if (treatmentsListBox.SelectedIndex != -1 && readOnlyParameter)
+                {
+                    sqlConnection = new SqlConnection(connectionPath);
+                    SqlCommand selectTreatment = new SqlCommand("SELECT * FROM [MedicalHistory] WHERE [Id]=@Id", sqlConnection);
+                    await sqlConnection.OpenAsync();
+                    selectTreatment.Parameters.AddWithValue("Id", treatmentsListBox.SelectedItem.ToString().Split(' ')[0]);
+                    sdr = await selectTreatment.ExecuteReaderAsync();
+                    while (await sdr.ReadAsync())
+                    {
+                        treatmentTextBox.Text = Convert.ToString(sdr["Info"]);
+                        studentTextBox.Text = Convert.ToString(sdr["IdStudent"]);
+                        typeComboBox.Text = Convert.ToString(sdr["Type"]);
+                    }
+                    sdr.Close();
+                    sqlConnection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString(), ex.Source.ToString(), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

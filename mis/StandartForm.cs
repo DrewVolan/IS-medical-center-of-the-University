@@ -24,7 +24,8 @@ namespace mis
         /// Путь к базе данных.
         /// </summary>
         //public string connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\MedicalDatabase.mdf; Integrated Security=True";
-        public string connectionPath = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\Desktop\Учёба\3 курс\2 семестр\Технология проектирования ИС\Лабораторная работа №7-10\mis\mis\MedicalDatabase.mdf';Integrated Security = True; Connect Timeout = 30";
+        //public string connectionPath = @"Data Source = (LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\Desktop\Учёба\3 курс\2 семестр\Технология проектирования ИС\Лабораторная работа №7-10\mis\mis\MedicalDatabase.mdf';Integrated Security = True; Connect Timeout = 30";
+        public string connectionPath = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\Desktop\Учёба\3 курс\2 семестр\Технология проектирования ИС\Лабораторная работа №7-10\mis\mis\MedicalDatabase.mdf';Integrated Security=True";
         public SqlConnection sqlConnection;
         public SqlDataReader sdr;
         /// <summary>
@@ -87,7 +88,22 @@ namespace mis
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Метод Save");
+            if (this.Text == "Медпункт (Администрирование)")
+            {
+                ReportForm reportForm = new ReportForm
+                {
+                    ReportRole = "Администратор"
+                };
+                reportForm.ShowDialog();
+            }
+            else
+            {
+                ReportForm reportForm = new ReportForm
+                {
+                    ReportRole = "Врач"
+                };
+                reportForm.ShowDialog();
+            }
         }
     }
 }

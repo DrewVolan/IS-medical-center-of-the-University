@@ -100,7 +100,7 @@ namespace mis
                             DialogResult newUserDialogResult = MessageBox.Show($"Добавить нового студента {fullNameTextBox.Text}?", "Новый студент", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                             if (newUserDialogResult == DialogResult.Yes)
                             {
-                                SqlCommand insertStudent = new SqlCommand("INSERT INTO [Students] (Surname, Name, Patronymic, Address, PreparationProgram, LearningBasis, DateOfReceipt)VALUES(@Surname, @Name, @Patronymic, @Address, @PreparationProgram, @LearningBasis, @DateOfReceipt)", sqlConnection);
+                                SqlCommand insertStudent = new SqlCommand("INSERT INTO [Students] (Surname, Name, Patronymic, Address, PreparationProgram, LearningBasis, DateOfReceipt, Grouping)VALUES(@Surname, @Name, @Patronymic, @Address, @PreparationProgram, @LearningBasis, @DateOfReceipt, @Grouping)", sqlConnection);
                                 insertStudent.Parameters.AddWithValue("Surname", fullNameTextBox.Text.Split(' ')[0]);
                                 insertStudent.Parameters.AddWithValue("Name", fullNameTextBox.Text.Split(' ')[1]);
                                 insertStudent.Parameters.AddWithValue("Patronymic", fullNameTextBox.Text.Split(' ')[2]);
@@ -108,7 +108,7 @@ namespace mis
                                 insertStudent.Parameters.AddWithValue("PreparationProgram", loginTextBox.Text);
                                 insertStudent.Parameters.AddWithValue("LearningBasis", learningBasis);
                                 insertStudent.Parameters.AddWithValue("DateOfReceipt", dateTimePicker.Value);
-                                //insertStudent.Parameters.AddWithValue("Group", passwordTextBox.Text);
+                                insertStudent.Parameters.AddWithValue("Grouping", passwordTextBox.Text);
                                 await sqlConnection.OpenAsync();
                                 await insertStudent.ExecuteNonQueryAsync();
                                 sqlConnection.Close();
@@ -239,7 +239,7 @@ namespace mis
                 while (await sdr.ReadAsync())
                 {
                     if (Convert.ToString(sdr["Status"]) == "True")
-                        studentsListBox.Items.Add(Convert.ToString(sdr["Group"]) + " " + Convert.ToString(sdr["Surname"]) + " " + Convert.ToString(sdr["Name"]) + " " + Convert.ToString(sdr["Patronymic"]) + " " + Convert.ToString(sdr["Id"]));
+                        studentsListBox.Items.Add(Convert.ToString(sdr["Grouping"]) + " " + Convert.ToString(sdr["Surname"]) + " " + Convert.ToString(sdr["Name"]) + " " + Convert.ToString(sdr["Patronymic"]) + " " + Convert.ToString(sdr["Id"]));
                 }
                 sdr.Close();
             }
@@ -304,10 +304,10 @@ namespace mis
                 fullNameTextBox.Visible = true;
                 fullNameTextBox.ReadOnly = false;
                 dateLabel.Visible = true;
-                dateLabel.Text = "Дата поступления:";
+                dateLabel.Text = "Дата поступ-я:";
                 dateTimePicker.Visible = true;
                 dateTimePicker.Enabled = true;
-                loginLabel.Text = "Программа обучения:";
+                loginLabel.Text = "Прогр. обуч-я:";
                 loginLabel.Visible = true;
                 loginTextBox.Visible = true;
                 loginTextBox.ReadOnly = false;
@@ -315,7 +315,7 @@ namespace mis
                 passwordLabel.Visible = true;
                 passwordTextBox.Visible = true;
                 passwordTextBox.ReadOnly = false;
-                paramLabel1.Text = "Основа обучения:";
+                paramLabel1.Text = "Основа обуч-я:";
                 paramLabel1.Visible = true;
                 paramTextBox1.Visible = true;
                 paramTextBox1.ReadOnly = false;
@@ -424,12 +424,12 @@ namespace mis
                         thisStudent[1] = Convert.ToString(sdr["Surname"]) + " " + Convert.ToString(sdr["Name"]) + " " + Convert.ToString(sdr["Patronymic"]);
                         fullNameTextBox.Text = thisStudent[1];
                         dateLabel.Visible = true;
-                        dateLabel.Text = "Дата поступления:";
+                        dateLabel.Text = "Дата поступ-я:";
                         dateTimePicker.Visible = true;
                         dateTimePicker.Enabled = false;
                         thisStudent[5] = Convert.ToString(sdr["DateOfReceipt"]);
                         dateTimePicker.Value = DateTime.Parse(thisStudent[5]);
-                        loginLabel.Text = "Программа обучения:";
+                        loginLabel.Text = "Прогр. обуч-я:";
                         loginLabel.Visible = true;
                         loginTextBox.Visible = true;
                         loginTextBox.ReadOnly = true;
@@ -439,9 +439,9 @@ namespace mis
                         passwordLabel.Visible = true;
                         passwordTextBox.Visible = true;
                         passwordTextBox.ReadOnly = true;
-                        thisStudent[7] = Convert.ToString(sdr["Group"]);
+                        thisStudent[7] = Convert.ToString(sdr["Grouping"]);
                         passwordTextBox.Text = thisStudent[7];
-                        paramLabel1.Text = "Основа обучения:";
+                        paramLabel1.Text = "Основа обуч-я:";
                         paramLabel1.Visible = true;
                         paramTextBox1.Visible = true;
                         paramTextBox1.ReadOnly = false;
@@ -516,11 +516,11 @@ namespace mis
                     idTextBox.Text = thisStudent[0];
                     fullNameTextBox.Text = thisStudent[1];
                     dateLabel.Visible = true;
-                    dateLabel.Text = "Дата поступления:";
+                    dateLabel.Text = "Дата поступ-я:";
                     dateTimePicker.Visible = true;
                     dateTimePicker.Enabled = false;
                     dateTimePicker.Value = DateTime.Parse(thisStudent[5]);
-                    loginLabel.Text = "Программа обучения:";
+                    loginLabel.Text = "Прогр.а обуч-я:";
                     loginLabel.Visible = true;
                     loginTextBox.Visible = true;
                     loginTextBox.ReadOnly = true;
@@ -530,7 +530,7 @@ namespace mis
                     passwordTextBox.Visible = true;
                     passwordTextBox.ReadOnly = true;
                     passwordTextBox.Text = thisStudent[7];
-                    paramLabel1.Text = "Основа обучения:";
+                    paramLabel1.Text = "Основа обуч-я:";
                     paramLabel1.Visible = true;
                     paramTextBox1.Visible = true;
                     paramTextBox1.ReadOnly = false;
